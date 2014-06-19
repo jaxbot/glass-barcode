@@ -13,6 +13,9 @@
 
 package com.jaxbot.glass.barcode.scan;
 
+// Adjust to whatever the main package name is
+import com.jaxbot.glass.qrlens.R;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.EnumSet;
@@ -33,15 +36,11 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.github.barcodeeye.BaseGlassActivity;
-import com.github.barcodeeye.R;
-import com.github.barcodeeye.image.ImageManager;
-import com.github.barcodeeye.migrated.BeepManager;
-import com.github.barcodeeye.migrated.FinishListener;
-import com.github.barcodeeye.migrated.InactivityTimer;
-import com.github.barcodeeye.scan.result.ResultProcessor;
-import com.github.barcodeeye.scan.result.ResultProcessorFactory;
-import com.github.barcodeeye.scan.ui.ViewfinderView;
+import com.jaxbot.glass.barcode.BaseGlassActivity;
+import com.jaxbot.glass.barcode.migrated.BeepManager;
+import com.jaxbot.glass.barcode.migrated.FinishListener;
+import com.jaxbot.glass.barcode.migrated.InactivityTimer;
+import com.jaxbot.glass.barcode.scan.ui.ViewfinderView;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
@@ -175,7 +174,7 @@ public final class CaptureActivity extends BaseGlassActivity implements
             }
             if (mSavedResultToShow != null) {
                 Message message = Message.obtain(mHandler,
-                        R.id.decode_succeeded, mSavedResultToShow);
+                        1, mSavedResultToShow);
                 mHandler.sendMessage(message);
             }
             mSavedResultToShow = null;
@@ -278,10 +277,6 @@ public final class CaptureActivity extends BaseGlassActivity implements
 
     // Put up our own UI for how to handle the decoded contents.
     private void handleDecodeInternally(Result rawResult, Bitmap barcode) {
-
-        ResultProcessor<?> processor = ResultProcessorFactory
-                .makeResultProcessor(this, rawResult, null);
-
         ParsedResult parsedResult = ResultParser.parseResult(rawResult);
 
         Intent intent = new Intent();

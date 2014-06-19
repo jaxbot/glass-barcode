@@ -25,7 +25,8 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.barcodeeye.R;
+// Adjust to whatever the main package name is
+import com.jaxbot.glass.qrlens.R;
 
 /**
  * A custom adapter designed to fetch bookmarks from a cursor. Before Honeycomb we used

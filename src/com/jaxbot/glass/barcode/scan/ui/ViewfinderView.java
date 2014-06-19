@@ -13,6 +13,9 @@
 
 package com.jaxbot.glass.barcode.scan.ui;
 
+// Adjust to whatever the main package name is
+import com.jaxbot.glass.qrlens.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +28,6 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.github.barcodeeye.R;
 import com.google.zxing.ResultPoint;
 import com.google.zxing.ResultPointCallback;
 import com.google.zxing.client.android.camera.CameraManager;

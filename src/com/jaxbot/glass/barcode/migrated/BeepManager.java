@@ -21,7 +21,7 @@ import android.media.AudioManager;
 import com.google.android.glass.media.Sounds;
 import android.util.Log;
 
-import com.github.barcodeeye.scan.CaptureActivity;
+import com.jaxbot.glass.barcode.scan.CaptureActivity;
 
 /**
  * Manages beeps and vibrations for {@link CaptureActivity}.

@@ -16,6 +16,9 @@
 
 package com.google.zxing.client.android.share;
 
+// Adjust to whatever the main package name is
+import com.jaxbot.glass.qrlens.R;
+
 import android.app.ListActivity;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageItemInfo;
@@ -27,7 +30,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
-import com.github.barcodeeye.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -16,6 +16,9 @@
 
 package com.google.zxing.client.android.history;
 
+// Adjust to whatever the main package name is
+import com.jaxbot.glass.qrlens.R;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
@@ -25,7 +28,6 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.zxing.Result;
-import com.github.barcodeeye.R;
 
 import java.util.ArrayList;
 

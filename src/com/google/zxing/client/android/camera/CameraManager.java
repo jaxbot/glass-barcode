@@ -175,8 +175,7 @@ public final class CameraManager {
     }
 
     /**
-     * Convenience method for
-     * {@link com.com.github.barcodeeye.scan.CaptureActivity}
+     * Convenience method
      */
     public synchronized void setTorch(boolean newSetting) {
         if (newSetting != configManager.getTorchState(camera)) {

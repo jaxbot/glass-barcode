@@ -13,6 +13,9 @@
 
 package com.jaxbot.glass.barcode.scan;
 
+// Adjust to whatever the main package name is
+import com.jaxbot.glass.qrlens.R;
+
 import java.util.Collection;
 import java.util.Map;
 
@@ -30,8 +33,7 @@ import android.os.Message;
 import android.provider.Browser;
 import android.util.Log;
 
-import com.github.barcodeeye.R;
-import com.github.barcodeeye.scan.ui.ViewfinderView.ViewfinderResultPointCallback;
+import com.jaxbot.glass.barcode.scan.ui.ViewfinderView.ViewfinderResultPointCallback;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
@@ -79,7 +81,7 @@ public final class CaptureActivityHandler extends Handler {
         if (message.what == R.id.restart_preview) {
             Log.d(TAG, "Got restart preview message");
             restartPreviewAndDecode();
-        } else if (message.what == R.id.decode_succeeded) {
+        } else if (message.what == 1) {
             Log.d(TAG, "Got decode succeeded message");
             state = State.SUCCESS;
             Bundle bundle = message.getData();
@@ -98,11 +100,11 @@ public final class CaptureActivityHandler extends Handler {
                         .getFloat(DecodeThread.BARCODE_SCALED_FACTOR);
             }
             activity.handleDecode((Result) message.obj, barcode, scaleFactor);
-        } else if (message.what == R.id.decode_failed) {
+        } else if (message.what == 2) {
             // We're decoding as fast as possible, so when one decode fails, start another.
             state = State.PREVIEW;
             cameraManager.requestPreviewFrame(decodeThread.getHandler(),
-                    R.id.decode);
+                    0);
         } else if (message.what == R.id.return_scan_result) {
             Log.d(TAG, "Got return scan result message");
             activity.setResult(Activity.RESULT_OK, (Intent) message.obj);
@@ -149,15 +151,15 @@ public final class CaptureActivityHandler extends Handler {
         }
 
         // Be absolutely sure we don't send any queued up messages
-        removeMessages(R.id.decode_succeeded);
-        removeMessages(R.id.decode_failed);
+        removeMessages(1);
+        removeMessages(2);
     }
 
     private void restartPreviewAndDecode() {
         if (state == State.SUCCESS) {
             state = State.PREVIEW;
             cameraManager.requestPreviewFrame(decodeThread.getHandler(),
-                    R.id.decode);
+                    0);
             activity.drawViewfinder();
         }
     }

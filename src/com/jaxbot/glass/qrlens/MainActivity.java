@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
-import com.github.barcodeeye.scan.CaptureActivity;
+import com.jaxbot.glass.barcode.scan.CaptureActivity;
 
 public class MainActivity extends Activity {
 	final int SCAN_QR = 4;

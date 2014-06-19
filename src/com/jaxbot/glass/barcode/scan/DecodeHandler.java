@@ -16,6 +16,9 @@
 
 package com.jaxbot.glass.barcode.scan;
 
+// Adjust to whatever the main package name is
+import com.jaxbot.glass.qrlens.R;
+
 import java.io.ByteArrayOutputStream;
 import java.util.Map;
 
@@ -26,7 +29,6 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
-import com.github.barcodeeye.R;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.MultiFormatReader;
@@ -54,7 +56,7 @@ public final class DecodeHandler extends Handler {
     if (!running) {
       return;
     }
-    if (message.what == R.id.decode) {
+    if (message.what == 0) {
         decode((byte[]) message.obj, message.arg1, message.arg2);
     } else if (message.what == R.id.quit) {
         running = false;
@@ -91,7 +93,7 @@ public final class DecodeHandler extends Handler {
       long end = System.currentTimeMillis();
       Log.d(TAG, "Found barcode in " + (end - start) + " ms");
       if (handler != null) {
-        Message message = Message.obtain(handler, R.id.decode_succeeded, rawResult);
+        Message message = Message.obtain(handler, 1, rawResult);
         Bundle bundle = new Bundle();
         bundleThumbnail(source, bundle);
         message.setData(bundle);
@@ -99,7 +101,7 @@ public final class DecodeHandler extends Handler {
       }
     } else {
       if (handler != null) {
-        Message message = Message.obtain(handler, R.id.decode_failed);
+        Message message = Message.obtain(handler, 2);
         message.sendToTarget();
       }
     }
